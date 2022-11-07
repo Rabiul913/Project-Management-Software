@@ -42,7 +42,7 @@ class LoginController extends Controller
             CURLOPT_FOLLOWLOCATION => true,
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => 'GET',
-            CURLOPT_POSTFIELDS => array('token'=>$request->token),
+            // CURLOPT_POSTFIELDS => array('token'=>$request->token),
         ));
 
         $response = curl_exec($curl);

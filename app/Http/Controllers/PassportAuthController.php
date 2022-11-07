@@ -57,7 +57,15 @@ class PassportAuthController extends Controller
         if (Auth::check()) {
             $user = Auth::user()->token();
             $user->revoke();
-            return response()->json(['success' => "Logout Successfully"], 200);
+
+            if(!empty($user)){
+                $success['seccess']=true;
+                $success['message']="Logout Successfully";
+            }else{
+                $success['seccess']=false;
+                $success['message']="Logout failed";
+            }
+            return response()->json(['logout' => $success], 200);
         }
     }
 
