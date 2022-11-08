@@ -20,7 +20,7 @@
     }
     .wrapper{
         margin: auto;
-        width: 25%;
+        width: 30%;
         border: 3px solid #181718;
         padding: 10px;
         margin-top: 5%;
@@ -109,36 +109,10 @@ input:hover,
    
     </style>
 <body>
-
-    {{-- <div class="container">
-
-        <form class="content" action="#" method="post">
-          <div class="imgcontainer">
-            <img src="img_avatar2.png" alt="Avatar" class="avatar">
-          </div>
-      
-          <div class="container">
-            <label for="uname"><b>Username</b></label>
-            <input type="text" placeholder="Enter Username" name="uname" required>
-      
-            <label for="psw"><b>Password</b></label>
-            <input type="password" placeholder="Enter Password" name="psw" required>
-              
-            <button type="submit">Login</button>
-            <label>
-              <input type="checkbox" checked="checked" name="remember"> Remember me
-            </label>
-          </div>
-      
-          <div class="container" style="background-color:#f1f1f1">
-            <span class="psw">Forgot <a href="#">password?</a></span>
-          </div>
-        </form>
-    </div> --}}
-
         <div class="wrapper">
+
             <div class="imgcontainer">
-              <h3>Login Form</h3>
+                <h3>Registration Form</h3>
                 {{-- <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span> --}}
                 <img src="{{ asset('assets/images/login.gif') }}" alt="Avatar" class="avatar">
             </div>
@@ -146,23 +120,28 @@ input:hover,
                 <label for="uname"><b>Username</b></label>
                 <input type="text" placeholder="Enter Username" name="uname" required>
             </div>
+            <div>
+                <label for="uname"><b>Email</b></label>
+                <input type="text" placeholder="Enter Username" name="uname" required>
+            </div>
             
             <div>
                 <label for="psw"><b>Password</b></label>
                 <input type="password" placeholder="Enter Password" name="psw" required>
             </div>        
+            <div>
+                <label for="psw"><b>Retype Password</b></label>
+                <input type="password" placeholder="Enter Password" name="psw" required>
+            </div>        
                 
             <div>
-                <label>
-                <input type="checkbox" checked="checked" name="remember"> Remember me
-                </label>
-                <button type="submit">Login</button>
+                <button type="submit">Sign in</button>
             </div>
-            <div>
+            {{-- <div>
                 <a href="#" class="google btn"><i class="fa fa-google fa-fw">
                     </i> Login with Google+
                 </a>
-            </div>
+            </div> --}}
         </div>
 </body>
 </html>
