@@ -7,7 +7,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Passport\RefreshToken;
 use Laravel\Passport\Token;
-
+use Illuminate\Support\Facades\Hash;
 class PassportAuthController extends Controller
 {
     //
@@ -22,7 +22,7 @@ class PassportAuthController extends Controller
         $user= User::create([
             'name' =>$request->name,
             'email'=>$request->email,
-            'password'=>bcrypt($request->password)
+            'password'=>Hash::make($request->password)
         ]);
         $success['success'] =  true;
         $success['name'] =  $user->name;
@@ -66,6 +66,7 @@ class PassportAuthController extends Controller
                 $success['seccess']=false;
                 $success['message']="Logout failed";
             }
+            
             return response()->json(['logout' => $success], 200);
        
     }
