@@ -54,9 +54,10 @@ class PassportAuthController extends Controller
     }
 
     public function logoutUser(){
-        if (Auth::check()) {
+        
             $user = Auth::user()->token();
             $user->revoke();
+            Auth::logout();
 
             if(!empty($user)){
                 $success['seccess']=true;
@@ -66,7 +67,7 @@ class PassportAuthController extends Controller
                 $success['message']="Logout failed";
             }
             return response()->json(['logout' => $success], 200);
-        }
+       
     }
 
     /**
