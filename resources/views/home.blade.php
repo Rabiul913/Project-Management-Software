@@ -20,7 +20,7 @@
     }
     .wrapper{
         margin: auto;
-        width: 30%;
+        width: 25%;
         border: 3px solid #181718;
         padding: 10px;
         margin-top: 5%;
@@ -109,45 +109,11 @@ input:hover,
    
     </style>
 <body>
+
         <div class="wrapper">
-          <form action="{{ route('admin-register') }}" method="POST">
-            @csrf
-            <div class="imgcontainer">
-                <h3>Registration Form</h3>
-                {{-- <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span> --}}
-                <img src="{{ asset('assets/images/login.gif') }}" alt="Avatar" class="avatar">
-            </div>
-            <div>
-                <label for="username"><b>Username</b></label>
-                <input type="text" placeholder="Enter Username" name="username" required>
-            </div>
-            <div>
-                <label for="email"><b>Email</b></label>
-                <input type="text" placeholder="Enter Username" name="email" required>
-                @if ($errors->has('email')) <small
-                style="color: red">{{ $errors->first('email') }}</small> @endif
-            </div>
-            
-            <div>
-                <label for="password"><b>Password</b></label>
-                <input type="password" placeholder="Enter Password" name="password" required>
-                @if ($errors->has('password')) <small
-                style="color: red">{{ $errors->first('password') }}</small> @endif
-            </div>        
-            <div>
-                <label for="confirm_password"><b>Retype Password</b></label>
-                <input type="password" placeholder="Enter Password" name="confirm_password" required>
-            </div>        
-                
-            <div>
-                <button type="submit">Sign in</button>
-            </div>
-          </form>
-            {{-- <div>
-                <a href="#" class="google btn"><i class="fa fa-google fa-fw">
-                    </i> Login with Google+
-                </a>
-            </div> --}}
+            <a class="btn" href="{{route('logout')}}">Logout</a>        
         </div>
+        {{ session('access_token') }}
+        
 </body>
 </html>

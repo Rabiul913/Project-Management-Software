@@ -137,19 +137,22 @@ input:hover,
     </div> --}}
 
         <div class="wrapper">
+          <form action="{{route('admin-login')}}" method="POST">
+            @csrf
+
             <div class="imgcontainer">
               <h3>Login Form</h3>
                 {{-- <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span> --}}
                 <img src="{{ asset('assets/images/login.gif') }}" alt="Avatar" class="avatar">
             </div>
             <div>
-                <label for="uname"><b>Username</b></label>
-                <input type="text" placeholder="Enter Username" name="uname" required>
+                <label for="email"><b>Email</b></label>
+                <input type="text" placeholder="Enter email" name="email" required>
             </div>
             
             <div>
-                <label for="psw"><b>Password</b></label>
-                <input type="password" placeholder="Enter Password" name="psw" required>
+                <label for="password"><b>Password</b></label>
+                <input type="password" placeholder="Enter Password" name="password" required>
             </div>        
                 
             <div>
@@ -159,6 +162,10 @@ input:hover,
                 <button type="submit">Login</button>
             </div>
             <div>
+          </form>
+                <a href="{{ route('register') }}" class="google btn"><i class="fa fa-google fa-fw">
+                    </i> Sign In
+                </a>
                 <a href="#" class="google btn"><i class="fa fa-google fa-fw">
                     </i> Login with Google+
                 </a>

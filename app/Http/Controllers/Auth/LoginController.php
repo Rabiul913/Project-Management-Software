@@ -5,11 +5,14 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Auth;
+use Session;
+use DB;
 
 class LoginController extends Controller
 {
     //
-    public function login(Request $request){
+    public function adminLogin(Request $request){
+        // dd($request);
         $curl = curl_init();
         curl_setopt_array($curl, array(
             CURLOPT_URL => env('APP_URL') . '/api/v1/login',
@@ -28,13 +31,21 @@ class LoginController extends Controller
         curl_close($curl);
 
         $login = json_decode($response);
+
+        $user_id = DB::table('oauth_access_tokens')
+        ->where('name', $login->data->email)
+        ->first();
+        // Session::put('access_token', $login->data->token);
+        dd($user_id);
+        return view('home');
     }
 
-    public function logout(Request $request)
+    public function logout()
     {
+        // dd('hi');
         $curl = curl_init();
         curl_setopt_array($curl, array(
-            CURLOPT_URL => env('APP_URL') . '/api/v1/login',
+            CURLOPT_URL => env('APP_URL') . '/api/v1/logout',
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => '',
             CURLOPT_MAXREDIRS => 10,
@@ -49,6 +60,8 @@ class LoginController extends Controller
 
         curl_close($curl);
         $logout = json_decode($response);
+
+        dd($logout);
         return redirect('/');
     }
 }

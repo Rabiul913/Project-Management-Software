@@ -10,9 +10,15 @@ class RegisterController extends Controller
     //
 
 
-    public function register(Request $request){
-        $curl = curl_init();
+    public function user_register(Request $request){
+        
+        $this->validate($request, [
+            'username'=>'required',
+            'email'=>'required|email',
+            'password' => 'required|same:confirm_password|min:8',           
+        ]);
 
+        $curl = curl_init();
         curl_setopt_array($curl, array(
             CURLOPT_URL => env('APP_URL') . '/api/v1/register',
             CURLOPT_RETURNTRANSFER => true,
@@ -22,13 +28,16 @@ class RegisterController extends Controller
             CURLOPT_FOLLOWLOCATION => true,
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => 'POST',
-            CURLOPT_POSTFIELDS => array('name' => $request->name, 'email'=>$request->email, 'password'=>$request->password),
+            CURLOPT_POSTFIELDS => array('name' => $request->username, 'email'=>$request->email, 'password'=>$request->password),
         ));
 
         $response = curl_exec($curl);
 
         curl_close($curl);
 
-        $company_bin = json_decode($response);
+        $register = json_decode($response);
+
+        dd($register);
+        // return redirect('/');
     }
 }
